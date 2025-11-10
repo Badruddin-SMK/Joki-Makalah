@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Joki Makalah — 10K (Realtime + Admin Commands)</title>
+  <link rel="stylesheet" href="style.css" />
+
+</head>
+<body>
+<header>
+  <div class="logo">
+    <img src="logo.png" class="logo-img" />
+    <h1>Joki Makalah</h1>
+  </div>
+  <nav>
+    <a href="#">Beranda</a>
+    <a href="#">Layanan</a>
+    <a href="#">Kontak</a>
+  </nav>
+</header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="card hero-left">
+        <h2>Joki Makalah Pelajar SMK — Harga Tetap 10K</h2>
+        <p class="small">Makalah rapi, lengkap (cover, kata pengantar, daftar isi, pembahasan, penutup). Revisi 1x gratis.</p>
+        <div class="features">
+          <div class="feat">Selesai 1–2 hari</div>
+          <div class="feat">Format .docx & .pdf</div>
+          <div class="feat">Pastikan data benar untuk melanjutkan transaksi.</div>
+        </div>
+
+        <div id="services" style="margin-top:14px">
+          <h3 style="margin:14px 0 8px">Layanan</h3>
+          <ul class="small">
+            <li>Makalah sekolah (IPS, PKN, Bahasa, Ekonomi)</li>
+            <li>Tambahan request di catatan</li>
+            <li>Revisi 1x gratis</li>
+          </ul>
+        </div>
+
+        <div id="pricing" class="pricing">
+          <div class="price-card card">
+            <div class="muted">Paket Hemat</div>
+            <div class="price">Rp10.000</div>
+            <div class="small">Max 8 halaman • 1–2 hari</div>
+          </div>
+          <div class="price-card card">
+            <div class="muted">Tambahan</div>
+            <div class="price">+Rp2.000 / 2 halaman</div>
+            <div class="small">Kilat +Rp5.000</div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="card">
+        <h3 style="margin-top:0">Form Order</h3>
+        <form id="orderForm">
+          <div style="margin-bottom:10px">
+            <label>Nama</label>
+            <input id="name" required />
+          </div>
+          <div style="margin-bottom:10px">
+            <label>Kelas / Jurusan</label>
+            <input id="kelas" placeholder="X TJKT/XI AKL" />
+          </div>
+          <div style="margin-bottom:10px">
+            <label>Mata Pelajaran / Topik</label>
+            <input id="subject" required />
+          </div>
+          <div class="row" style="margin-bottom:10px">
+            <div style="flex:1">
+              <label>Halaman (angka)</label>
+              <input id="pages" type="number" min="1" value="8" />
+            </div>
+            <div style="width:48%">
+              <label>Deadline</label>
+              <input id="deadline" type="date" />
+            </div>
+          </div>
+          <div style="margin-bottom:10px">
+            <label>Catatan / Instruksi</label>
+            <textarea id="message" rows="3" placeholder="Isi apa saja tugas kalian seperti tema bisa berisikan gambar juga, dan bisa catat tambahan juga"></textarea>
+          </div>
+
+          <div style="margin-bottom:10px">
+            <label>Metode Pembayaran</label>
+            <select id="paymentMethod">
+              <option value="gopay">Gopay</option>
+              <option value="dana">Dana</option>
+              <option value="cash">Cash</option>
+            </select>
+          </div>
+
+          <div style="display:flex;gap:8px;align-items:center">
+            <button type="submit">Kirim Order — <span id="btnPrice">Rp10.000</span></button>
+            <div class="small">Bayar via Gopay, Dana, Cash</div>
+          </div>
+        </form>
+      </aside>
+    </section>
+
+    <section style="margin-top:22px">
+      <div class="card">
+        <h3 style="margin-top:0">Testimonial</h3>
+        <div id="testimonials" class="small"></div>
+      </div>
+    </section>
+  </main>
+
+<footer>&copy; 2025 Joki Makalah. All rights reserved.</footer>
+
+  <!-- Admin Modal -->
+  <div class="modal" id="adminModal">
+    <div class="panel">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px">
+        <h3 style="margin:0">Admin Panel</h3>
+        <button id="closeAdmin" class="btn-close">Tutup</button>
+      </div>
+
+      <section style="margin-bottom:12px">
+        <h4 style="margin:6px 0">Orders (Realtime)</h4>
+        <table class="admin-table" id="ordersTable">
+          <thead><tr><th>ID</th><th>Nama</th><th>Subjek</th><th>Hal</th><th>Deadline</th><th>Harga</th><th>Pembayaran</th><th>Status</th><th>Aksi</th></tr></thead>
+          <tbody></tbody>
+        </table>
+
+        <div style="margin-top:14px">
+          <label style="font-weight:700">Command (ketik /paid /done /delete [ORDER_ID])</label>
+          <div class="controls">
+            <input id="cmdInput" class="cmd-input" placeholder="/paid ORD2025..." />
+            <button id="runCmd" class="small">Jalankan Command</button>
+          </div>
+        </div>
+      </section>
+
+      <section style="margin-top:12px">
+        <h4 style="margin:6px 0">Manage Testimonial (Realtime)</h4>
+        <div style="display:flex;gap:8px;margin-bottom:8px">
+          <input id="tName" placeholder="Nama" />
+          <input id="tText" placeholder="Isi testimonial" />
+          <button id="addTest">Tambah</button>
+        </div>
+        <div id="adminTestimonials" class="small"></div>
+      </section>
+    </div>
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>
